@@ -61,7 +61,7 @@ func New(cfg aws.Config, info metadata.ClientInfo, handlers request.Handlers, op
 			maxRetries = 3
 		}
 		// I've hardcoded this to be higher as an intermediate fix just because
-		svc.Retryer = DefaultRetryer{NumMaxRetries: 100}
+		svc.Retryer = retryer{}
 	}
 
 	svc.AddDebugHandlers()

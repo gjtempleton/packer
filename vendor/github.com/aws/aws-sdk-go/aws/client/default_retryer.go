@@ -15,12 +15,14 @@ import (
 // struct and override the specific methods. For example, to override only
 // the MaxRetries method:
 //
-//		type retryer struct {
-//      client.DefaultRetryer
-//    }
-//
-//    // This implementation always has 100 max retries
-//    func (d retryer) MaxRetries() int { return 100 }
+type retryer struct {
+	client.DefaultRetryer
+}
+
+// This implementation always has 100 max retries
+func (d retryer) MaxRetries() int { return 100 }
+
+// DefaultRetryer because
 type DefaultRetryer struct {
 	NumMaxRetries int
 }
