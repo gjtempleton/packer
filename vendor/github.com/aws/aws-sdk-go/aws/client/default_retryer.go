@@ -15,14 +15,12 @@ import (
 // struct and override the specific methods. For example, to override only
 // the MaxRetries method:
 //
-type retryer struct {
-	client.DefaultRetryer
-}
-
-// This implementation always has 100 max retries
-func (d retryer) MaxRetries() int { return 100 }
-
-// DefaultRetryer because
+//		type retryer struct {
+//      client.DefaultRetryer
+//    }
+//
+//    // This implementation always has 100 max retries
+//    func (d retryer) MaxRetries() int { return 100 }
 type DefaultRetryer struct {
 	NumMaxRetries int
 }
@@ -30,7 +28,7 @@ type DefaultRetryer struct {
 // MaxRetries returns the number of maximum returns the service will use to make
 // an individual API request.
 func (d DefaultRetryer) MaxRetries() int {
-	return d.NumMaxRetries
+	return 100
 }
 
 var seededRand = rand.New(&lockedSource{src: rand.NewSource(time.Now().UnixNano())})
