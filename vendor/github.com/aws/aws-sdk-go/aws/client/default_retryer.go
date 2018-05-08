@@ -1,6 +1,7 @@
 package client
 
 import (
+	"fmt"
 	"math/rand"
 	"strconv"
 	"sync"
@@ -54,6 +55,9 @@ func (d DefaultRetryer) RetryRules(r *request.Request) time.Duration {
 	}
 
 	delay := (1 << uint(retryCount)) * (seededRand.Intn(minTime) + minTime)
+	if retryCount%1 == 0 {
+		fmt.Printf("Retry number %d with delay %d", retryCount, delay)
+	}
 	return time.Duration(delay) * time.Millisecond
 }
 
